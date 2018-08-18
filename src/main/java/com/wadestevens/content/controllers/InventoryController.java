@@ -24,7 +24,7 @@ public class InventoryController {
     @RequestMapping(value = "")
     public String index(Model model) {
 
-        //  The inventoryDao.findAll gathers all that is in the database and displays them.
+        //  The inventoryDao.findAll gathers all information in the database and displays them.
         model.addAttribute("inventories", inventoryDao.findAll());
         model.addAttribute("title", "Inventory List");
 
