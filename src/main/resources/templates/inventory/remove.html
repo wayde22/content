@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace = "fragments :: head"></head>
+<body>
+
+<nav class="navigation" th:replace = "fragments :: navigation"></nav>
+
+<div class="container">
+
+    <h1 th:text = "${title}">Inventory</h1>
+
+    <form method="post">
+
+        <!--<div th:each="inventory : ${inventories}" class="checkbox" >-->
+        <!--<input type="checkbox" name="inventoryIds" th:value="${inventory.id}" th:id="${inventory.id}" />-->
+        <!--<label th:for="${inventory.id}" th:text="${inventory.item}"></label>-->
+
+        <!--<br />-->
+        <!--</div>-->
+
+        <table class="table">
+
+            <tr>
+                <th></th>
+                <th>Room</th>
+                <th>Items</th>
+                <th>Description</th>
+                <th>Model/I.D. No.</th>
+                <th>Purchase Date</th>
+                <th>Original Value</th>
+                <th>Current Value</th>
+            </tr>
+
+            <!--Needing to add links to each so that you can visit each item.-->
+
+            <tr th:each = "inventory : ${inventories}" class="checkbox">
+                <td><input type="checkbox" name="inventoryIds" th:value="${inventory.id}" th:id="${inventory.id}" /></td>
+                <td th:for="${inventory.id}" th:text = "${inventory.room}" ></td>
+                <td th:text = "${inventory.item}"></td>
+                <td th:text = "${inventory.description}"></td>
+                <td th:text = "${inventory.model}"></td>
+                <td th:text="${#dates.format(inventory.purchaseDate, 'MMM-dd-yyyy')}"></td>
+                <td>$ <span th:text="${#numbers.formatDecimal(inventory.purchaseValue, 0, 'COMMA', 2, 'POINT')}">10.00</span></td>
+                <td>$ <span th:text="${#numbers.formatDecimal(inventory.currentValue, 0, 'COMMA', 2, 'POINT')}">10.00</span></td>
+            </tr>
+        </table>
+        <input class="btn btn-danger" type="submit" value="Remove Inventory Item" />
+
+    </form>
+
+
+
+</div>
+</body>
+</html>

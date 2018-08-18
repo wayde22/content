@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace = "fragments :: head"></head>
+
+<body>
+
+<nav th:replace = "fragments :: navigation"></nav>
+
+<div class="container">
+
+    <h1 th:text = "${title}">Add Inventory</h1>
+
+    <form method = "post" style="max-width:600px;" th:object="${inventory}">
+        <!--<div class="form-group">-->
+        <!--<label th:for="roomId"><a href="/room/add/" title="Add Rooms">Room</a></label>-->
+        <!--<select name="roomId" id="roomId">-->
+        <!--<option th:each="room : ${rooms}"-->
+        <!--th:text="${room.name}"-->
+        <!--th:value="${room.id}"></option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <div class = "form-group">
+            <label th:for="room">Room</label>
+            <input placeholder="Living room" class="form-control" th:field="*{room}" />
+            <span th:errors="*{room}" class="error"></span>
+        </div>
+        <div class = "form-group">
+            <label th:for="item">Item</label>
+            <input placeholder="Couch" class="form-control" th:field="*{item}" />
+            <span th:errors="*{item}" class="error"></span>
+        </div>
+        <div class = "form-group">
+            <label th:for="description">Description</label>
+            <input placeholder="Brown leather sectional" class="form-control" th:field="*{description}" />
+            <span th:errors="*{description}" class="error"></span>
+        </div>
+        <div class = "form-group">
+            <label th:for="model">Model</label>
+            <input placeholder="Bls4932" class="form-control" th:field="*{model}" />
+            <span th:errors="*{model}" class="error"></span>
+        </div>
+        <div class = "form-group" data-provide="datepicker" data-date-format="mm-dd-yyyy">
+            <label th:for="purchaseDate">Purchase Date</label>
+            <!--<input class="form-control" th:field="*{purchaseDate}" />-->
+            <!--<span th:errors="*{purchaseDate}" class="error"></span>-->
+            <input type="date" th:field="*{purchaseDate}" class="input-group-date"/>
+        </div>
+        <div class = "form-group">
+            <label th:for="purchaseValue">Purchase Value</label>
+            <input class="form-control" th:field="*{purchaseValue}" />
+            <span th:errors="*{purchaseValue}" class="error"></span>
+        </div>
+        <div class = "form-group">
+            <label th:for="currentValue">Current Value</label>
+            <input class="form-control" th:field="*{currentValue}" />
+            <span th:errors="*{currentValue}" class="error"></span>
+        </div>
+
+        <!--<div class="form-group">-->
+        <!--<label for="image">Select Item Image</label>-->
+        <!--<input type="file" class="form-control-file" id="image" name="fileSelect"/>-->
+        <!--</div>-->
+
+        <input class="btn btn-success" type="submit" value="Add Inventory Item" />
+
+    </form>
+
+</div>
+</body>
+</html>

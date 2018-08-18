@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container">
+
+    <h1 th:text = "${title}">Inventory</h1>
+
+
+    <p th:unless = "${inventories} and ${inventories.size()}">No Inventory</p>
+
+
+
+    <table class="table">
+
+        <tr>
+            <th>Room</th>
+            <th>Items</th>
+            <th>Description</th>
+            <th>Model/I.D. No.</th>
+            <th>Purchase Date</th>
+            <th>Original Value</th>
+            <th>Current Value</th>
+        </tr>
+
+        <!--Needing to add links to each so that you can visit each item.-->
+
+        <tr th:each = "inventory : ${inventories}" >
+            <td><a href="#" th:text = "${inventory.room}"></a></td>
+            <td th:text = "${inventory.item}"></td>
+            <td th:text = "${inventory.description}"></td>
+            <td th:text = "${inventory.model}"></td>
+            <td th:text="${#dates.format(inventory.purchaseDate, 'MMM-dd-yyyy')}"></td>
+            <td>$ <span th:text="${#numbers.formatDecimal(inventory.purchaseValue, 0, 'COMMA', 2, 'POINT')}">10.00</span></td>
+            <td>$ <span th:text="${#numbers.formatDecimal(inventory.currentValue, 0, 'COMMA', 2, 'POINT')}">10.00</span></td>
+            <!--<td></td>-->
+            <!--<img th:src="@{/'images/' + ${post.imageName}}"/>-->
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>
